@@ -16,65 +16,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgO-Ca-Fmn">
-                                <rect key="frame" x="176" y="159" width="41.333333333333343" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgO-Ca-Fmn">
+                                <rect key="frame" x="176" y="159" width="41.333333333333343" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HLn-c4-CaU">
-                                <rect key="frame" x="100" y="677" width="193" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="h9P-qe-6gv">
+                                <rect key="frame" x="67" y="81" width="259" height="32"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
                                 <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Ek-5I-0aW"/>
+                                    <action selector="choiceSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="hAM-NF-jN8"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIH-nW-ZiJ">
-                                <rect key="frame" x="100" y="634" width="193" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Action 2"/>
-                                <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bxu-LC-8sA"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELe-Fg-tQX">
-                                <rect key="frame" x="100" y="591" width="193" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Action 1"/>
-                                <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="g3N-jV-j22"/>
-                                </connections>
-                            </button>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RgO-Ca-Fmn" secondAttribute="trailing" constant="100" id="3ep-Y2-3Uh"/>
-                            <constraint firstItem="NIH-nW-ZiJ" firstAttribute="width" secondItem="HLn-c4-CaU" secondAttribute="width" id="6WS-WB-Nq2"/>
-                            <constraint firstItem="RgO-Ca-Fmn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="GIJ-Hi-yqT"/>
-                            <constraint firstItem="RgO-Ca-Fmn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SfJ-jp-WFO"/>
-                            <constraint firstItem="ELe-Fg-tQX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Z3d-Kf-X3q"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="HLn-c4-CaU" secondAttribute="trailing" constant="100" id="Z5A-lm-afD"/>
-                            <constraint firstItem="ELe-Fg-tQX" firstAttribute="width" secondItem="NIH-nW-ZiJ" secondAttribute="width" id="am3-hA-yHX"/>
-                            <constraint firstItem="HLn-c4-CaU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="cg0-lK-1I6"/>
-                            <constraint firstItem="RgO-Ca-Fmn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="ed4-7e-exm"/>
-                            <constraint firstItem="HLn-c4-CaU" firstAttribute="top" secondItem="NIH-nW-ZiJ" secondAttribute="bottom" constant="8" symbolic="YES" id="fW1-e5-i31"/>
-                            <constraint firstItem="NIH-nW-ZiJ" firstAttribute="top" secondItem="ELe-Fg-tQX" secondAttribute="bottom" constant="8" symbolic="YES" id="in6-pX-pdo"/>
-                            <constraint firstItem="NIH-nW-ZiJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jSq-ZC-MfV"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HLn-c4-CaU" secondAttribute="bottom" constant="106" id="wVS-wc-WBZ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RgO-Ca-Fmn" secondAttribute="trailing" constant="10" id="HNg-zT-XNG"/>
+                            <constraint firstItem="h9P-qe-6gv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="IQH-kU-52L"/>
+                            <constraint firstItem="RgO-Ca-Fmn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="NPs-Dx-fUa"/>
+                            <constraint firstItem="h9P-qe-6gv" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.036385" id="OaP-8G-Zfw"/>
+                            <constraint firstItem="RgO-Ca-Fmn" firstAttribute="top" secondItem="h9P-qe-6gv" secondAttribute="bottom" constant="47" id="RxC-2A-0tt"/>
+                            <constraint firstItem="h9P-qe-6gv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="W5D-t5-YJX"/>
+                            <constraint firstItem="RgO-Ca-Fmn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jmH-t4-iiw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="h9P-qe-6gv" secondAttribute="trailing" constant="67" id="sNX-FN-C7L"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="button" destination="HLn-c4-CaU" id="7CT-Yt-bmk"/>
                         <outlet property="label" destination="RgO-Ca-Fmn" id="05S-95-qU2"/>
-                        <outletCollection property="actionButtons" destination="ELe-Fg-tQX" collectionClass="NSMutableArray" id="WDr-8L-1Cm"/>
-                        <outletCollection property="actionButtons" destination="NIH-nW-ZiJ" collectionClass="NSMutableArray" id="WLZ-CQ-RBW"/>
+                        <outlet property="segmentedControl" destination="h9P-qe-6gv" id="WeK-pd-J4X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="76" y="-2"/>
+            <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>

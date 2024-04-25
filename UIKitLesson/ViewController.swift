@@ -9,47 +9,42 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet var actionButtons: [UIButton]!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     @IBOutlet weak var label: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        label.isHidden = true
         label.font = label.font.withSize(35)
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        label.text = "The first segment is selcted"
         label.textColor = .red
         
-        button.isHidden = true
-        for button in actionButtons{
-            button.setTitleColor(.blue, for: .normal)
-            button.backgroundColor = .green
-        }
+        segmentedControl.insertSegment(withTitle: "Third", at: 2, animated: true)
         
-        button.setTitle("Clear", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .red
     }
     
-    @IBAction func pressedButton(_ sender: UIButton) {
-        label.isHidden = false
-        button.isHidden = false
+    @IBAction func choiceSegment(_ sender: UISegmentedControl) {
         
-        if sender.tag == 0 {
-            label.text = "Hello Guys!"
+        label.isHidden = false
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            label.text = "The first segment is selcted"
             label.textColor = .red
-        }
-        else if sender.tag == 1 {
-            label.text = "Hi there!"
+        case 1:
+            label.text = "The second segment is selected"
             label.textColor = .blue
+        case 2:
+            label.text = "The third segment is selected"
+            label.textColor = .yellow
+        default:
+            print("smthing went wrong")
         }
-        else if sender.tag == 2 {
-            label.isHidden = true
-            button.isHidden = true
-        }
-
     }
+    
+    
     
 }
-
