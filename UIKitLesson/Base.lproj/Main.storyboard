@@ -32,10 +32,22 @@
                                     <action selector="choiceSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="hAM-NF-jN8"/>
                                 </connections>
                             </segmentedControl>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LI9-7l-sHf">
+                                <rect key="frame" x="65" y="226.33333333333334" width="263" height="31.000000000000028"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="QBX-ad-rg9"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="E80-lG-Gcm"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="LI9-7l-sHf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="67" id="6xf-JD-YoA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LI9-7l-sHf" secondAttribute="trailing" constant="67" id="8SW-li-BOu"/>
+                            <constraint firstItem="LI9-7l-sHf" firstAttribute="top" secondItem="RgO-Ca-Fmn" secondAttribute="bottom" constant="47" id="9rV-qj-V59"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RgO-Ca-Fmn" secondAttribute="trailing" constant="10" id="HNg-zT-XNG"/>
                             <constraint firstItem="h9P-qe-6gv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="22" id="IQH-kU-52L"/>
                             <constraint firstItem="RgO-Ca-Fmn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="NPs-Dx-fUa"/>
@@ -49,11 +61,12 @@
                     <connections>
                         <outlet property="label" destination="RgO-Ca-Fmn" id="05S-95-qU2"/>
                         <outlet property="segmentedControl" destination="h9P-qe-6gv" id="WeK-pd-J4X"/>
+                        <outlet property="slider" destination="LI9-7l-sHf" id="41d-yj-gNL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75.572519083969468" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="-206.87022900763358" y="-50.70422535211268"/>
         </scene>
     </scenes>
     <resources>
