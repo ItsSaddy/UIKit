@@ -8,43 +8,52 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-//MARK: - Properties
+    //MARK: - IBOutlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var textFiled: UITextField!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var toggle: UISwitch!
+    @IBOutlet weak var switchLabel: UILabel!
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var label: UILabel!
     
-//MARK: - viewDidLoad
+    //MARK: - Properties
+    var uiElements = ["UISegmentedControl",
+                      "UILabel",
+                      "UISlider",
+                      "UITextField",
+                      "UIButton",
+                      "UIDatePicker"]
+    
+    var selectedElement: String?
+    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
     
-//MARK: - IBActions
-    
-    //MARK: choiseSegment
+    //MARK: - IBActions
     @IBAction func choiceSegment(_ sender: UISegmentedControl) {
         
         label.isHidden = false
         
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            label.text = "The first segment is selcted"
+            label.text = "Now the color has turned red"
             label.textColor = .red
         case 1:
-            label.text = "The second segment is selected"
+            label.text = "Now the color has turned blue"
             label.textColor = .blue
         case 2:
-            label.text = "The third segment is selected"
-            label.textColor = .yellow
+            label.text = "Now the color has turned green"
+            label.textColor = .green
         default:
             print("smthing went wrong")
         }
     }
     
-    //MARK: sliderAction
     @IBAction func sliderAction(_ sender: UISlider) {
         label.text = sender.value.description
         
@@ -52,7 +61,6 @@ class ViewController: UIViewController {
         self.view.backgroundColor = backgroundColor?.withAlphaComponent(CGFloat(sender.value))
     }
     
-    //MARK: doneButtonAction
     @IBAction func donePressed(_ sender: UIButton) {
         guard let text = textFiled.text, !text.isEmpty else { return }
         let isOnlyLetter = text.reduce(true) { $0 && $1.isLetter }
@@ -73,7 +81,6 @@ class ViewController: UIViewController {
         
     }
     
-    //MARK: datePicker
     @IBAction func chaneDate(_ sender: UIDatePicker) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .full
@@ -82,25 +89,141 @@ class ViewController: UIViewController {
         let dateValue = dateFormatter.string(from: sender.date)
         label.text = dateValue
     }
+    
+    @IBAction func toggleSwitch(_ sender: UISwitch) {
+        segmentedControl.isHidden.toggle()
+        label.isHidden.toggle()
+        slider.isHidden.toggle()
+        textFiled.isHidden.toggle()
+        datePicker.isHidden.toggle()
+        doneButton.isHidden.toggle()
+        
+        if !sender.isOn {
+            switchLabel.text = "Скрыть все элементы"
+        }
+        else {
+            switchLabel.text = "Отобразить все элементы"
+        }
+    }
+    
 }
 
+//MARK: - UIPickerView: Delegate, DataSource
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        uiElements.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        uiElements[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedElement = uiElements[row]
+        textFiled.text = selectedElement
+        
+        hideAllElements()
+        
+        switch selectedElement {
+        case "UISegmentedControl":
+            segmentedControl.isHidden = false
+        case "UILabel":
+            label.isHidden = false
+        case "UISlider":
+            slider.isHidden = false
+        case "UIDatePicker":
+            datePicker.isHidden = false
+        case "UIButton":
+            doneButton.isHidden = false
+        default:
+            break
+        }
+    }
+    
+    private func pickerView(_ pickerView: UIPickerView, viewForRow row: Int , widthForComponent component: Int, reusing view: UIView) -> UIView {
+        
+        var pickerViewLabel = UILabel()
+        
+        if let currentLabel = view as? UILabel {
+            pickerViewLabel = currentLabel
+        }
+        else {
+            pickerViewLabel = UILabel()
+        }
+        pickerViewLabel.textColor = .white
+        pickerViewLabel.textAlignment = .center
+        pickerViewLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 23)
+        pickerViewLabel.text = uiElements[row]
+        
+        return pickerViewLabel
+    }
     
     
+}
 
-//MARK: - Setup views
+
+
+
+//MARK: - Methods
 extension ViewController {
+    
     func setupViews() {
+        
         label.text = slider.value.description
         label.font = label.font.withSize(35)
         label.textAlignment = .center
         label.numberOfLines = 2
         
-        segmentedControl.insertSegment(withTitle: "Third", at: 2, animated: true)
+        segmentedControl.insertSegment(withTitle: "Green", at: 2, animated: true)
         
         slider.value = 1
         slider.minimumValue = 0
         slider.maximumValue = 1
         slider.minimumTrackTintColor = .darkGray
         slider.maximumTrackTintColor = .lightGray
+        
+        choiceUiElement()
+        createToolBar()
     }
+    
+    func choiceUiElement() {
+        let elementPicker = UIPickerView()
+        elementPicker.delegate = self
+        
+        textFiled.inputView = elementPicker
+    }
+    
+    func hideAllElements() {
+        segmentedControl.isHidden = true
+        label.isHidden = true
+        slider.isHidden = true
+        datePicker.isHidden = true
+        doneButton.isHidden = true
+    }
+    
+    func createToolBar() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done",
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(dismissKeyboard))
+        toolBar.setItems([doneButton], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        
+        textFiled.inputAccessoryView = toolBar
+    }
+        
+    
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
 }

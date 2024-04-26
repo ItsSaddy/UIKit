@@ -41,8 +41,8 @@
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Fqk-7o-deB">
                                                 <rect key="frame" x="16" y="20" width="361" height="32"/>
                                                 <segments>
-                                                    <segment title="First"/>
-                                                    <segment title="Second"/>
+                                                    <segment title="Red"/>
+                                                    <segment title="Blue"/>
                                                 </segments>
                                                 <connections>
                                                     <action selector="choiceSegment:" destination="BYZ-38-t0r" eventType="valueChanged" id="rUI-Mf-xsw"/>
@@ -64,7 +64,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CVP-Kh-enY">
-                                                <rect key="frame" x="32" y="276" width="329" height="35"/>
+                                                <rect key="frame" x="32" y="276" width="329" height="34.333333333333314"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Done">
                                                     <backgroundConfiguration key="background">
@@ -77,13 +77,33 @@
                                                     <action selector="donePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Slx-xe-xXt"/>
                                                 </connections>
                                             </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xny-A8-24C">
+                                                <rect key="frame" x="32" y="410.33333333333331" width="329" height="31"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Скрыть все элементы" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yB-WB-mrB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="272" height="31"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eqd-Dy-VaR">
+                                                        <rect key="frame" x="280" y="0.0" width="51" height="31"/>
+                                                        <connections>
+                                                            <action selector="toggleSwitch:" destination="BYZ-38-t0r" eventType="valueChanged" id="Cic-60-EVf"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="Xny-A8-24C" firstAttribute="leading" secondItem="JYE-kK-jcz" secondAttribute="leading" constant="32" id="3tW-8t-mCo"/>
                                             <constraint firstItem="Fqk-7o-deB" firstAttribute="top" secondItem="JYE-kK-jcz" secondAttribute="top" constant="20" id="6bO-ag-wox"/>
                                             <constraint firstItem="7qA-9i-Lqu" firstAttribute="centerX" secondItem="JYE-kK-jcz" secondAttribute="centerX" id="7GI-fo-mG8"/>
                                             <constraint firstItem="CFc-iA-Nvo" firstAttribute="trailing" secondItem="Fqk-7o-deB" secondAttribute="trailing" constant="-16" id="8N2-hV-w0c"/>
+                                            <constraint firstAttribute="trailing" secondItem="Xny-A8-24C" secondAttribute="trailing" constant="32" id="8g3-hy-IaD"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7qA-9i-Lqu" secondAttribute="trailing" constant="16" id="90P-Ds-tfL"/>
+                                            <constraint firstItem="Xny-A8-24C" firstAttribute="top" secondItem="CVP-Kh-enY" secondAttribute="bottom" constant="100" id="9lt-rO-RQm"/>
                                             <constraint firstItem="7qA-9i-Lqu" firstAttribute="centerX" secondItem="JYE-kK-jcz" secondAttribute="centerX" id="A9g-VQ-D26"/>
                                             <constraint firstItem="CFc-iA-Nvo" firstAttribute="top" secondItem="WUP-yu-XGt" secondAttribute="bottom" constant="38.666666666666629" id="JDP-AR-mcv"/>
                                             <constraint firstItem="CVP-Kh-enY" firstAttribute="leading" secondItem="Fqk-7o-deB" secondAttribute="leading" constant="16" id="JHA-kk-MVH"/>
@@ -126,10 +146,13 @@
                     <size key="freeformSize" width="393" height="800"/>
                     <connections>
                         <outlet property="datePicker" destination="DCr-15-pgM" id="M9M-XZ-YDK"/>
+                        <outlet property="doneButton" destination="CVP-Kh-enY" id="z5q-wB-gNM"/>
                         <outlet property="label" destination="7qA-9i-Lqu" id="Jwi-ZW-aIO"/>
                         <outlet property="segmentedControl" destination="Fqk-7o-deB" id="EdV-Ii-5FP"/>
                         <outlet property="slider" destination="WUP-yu-XGt" id="UYb-aq-baT"/>
+                        <outlet property="switchLabel" destination="2yB-WB-mrB" id="m5n-Ij-Dd9"/>
                         <outlet property="textFiled" destination="CFc-iA-Nvo" id="V00-En-kSm"/>
+                        <outlet property="toggle" destination="Eqd-Dy-VaR" id="JyI-Is-8ez"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
