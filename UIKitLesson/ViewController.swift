@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var textFiled: UITextField!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var label: UILabel!
     
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: sliderAction
     @IBAction func sliderAction(_ sender: UISlider) {
         label.text = sender.value.description
         
@@ -46,6 +48,26 @@ class ViewController: UIViewController {
         self.view.backgroundColor = backgroundColor?.withAlphaComponent(CGFloat(sender.value))
     }
     
+    //MARK: doneButtonAction
+    @IBAction func donePressed(_ sender: UIButton) {
+        guard let text = textFiled.text, !text.isEmpty else { return }
+        let isOnlyLetter = text.reduce(true) { $0 && $1.isLetter }
+        
+        label.isHidden = false
+        
+        if isOnlyLetter {
+            label.text = text
+        }
+        else {
+            let alert = UIAlertController(title: "Wrong format", message: "Please, enter your name", preferredStyle: .alert)
+            let okAlert = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okAlert)
+            present(alert, animated: true)
+        }
+        
+        textFiled.text = nil
+        
+    }
     
 }
 
