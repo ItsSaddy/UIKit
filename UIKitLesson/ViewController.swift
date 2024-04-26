@@ -8,19 +8,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-    //MARK: - Properties
+    
+//MARK: - Properties
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var textFiled: UITextField!
     @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var label: UILabel!
     
-    //MARK: - viewDidLoad
+//MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
     }
     
-    //MARK: - IBActions
+//MARK: - IBActions
+    
+    //MARK: choiseSegment
     @IBAction func choiceSegment(_ sender: UISegmentedControl) {
         
         label.isHidden = false
@@ -69,7 +73,19 @@ class ViewController: UIViewController {
         
     }
     
+    //MARK: datePicker
+    @IBAction func chaneDate(_ sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .full
+        
+        dateFormatter.locale = Locale(identifier: "tg")
+        let dateValue = dateFormatter.string(from: sender.date)
+        label.text = dateValue
+    }
 }
+
+    
+    
 
 //MARK: - Setup views
 extension ViewController {
