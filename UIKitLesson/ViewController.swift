@@ -11,6 +11,7 @@ import Foundation
 class ViewController: UIViewController {
     //MARK: - @IBOutlets
     @IBOutlet weak var stepper: UIStepper!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var countLabel: UILabel!
@@ -86,7 +87,6 @@ private extension ViewController {
         //textView
         textView.delegate = self
         textView.isHidden = true
-        textView.alpha = 0
         textView.font = .systemFont(ofSize: 17, weight: .regular)
         textView.layer.cornerRadius = 10
         
@@ -100,22 +100,27 @@ private extension ViewController {
         activityIndicator.startAnimating()
         self.view.isUserInteractionEnabled = false
         
+        //progressView
+        progressView.setProgress(0, animated: true)
+        
         //Observing keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(updateTextView(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTextView(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        UIView.animate(withDuration: 0, delay: 5, animations: { [weak self] in
+        //timerProgressView
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             
-            textView.alpha = 1
-        }) { [weak self] (finished) in
-            guard let self = self else { return }
-            
-            activityIndicator.stopAnimating()
-            textView.isHidden = false
-            view.isUserInteractionEnabled = true
-            
+            if progressView.progress != 1 {
+                progressView.progress += 0.2
+            }
+            else {
+                activityIndicator.stopAnimating()
+                textView.isHidden = false
+                view.isUserInteractionEnabled = true
+                progressView.isHidden = true
+            }
         }
     }
     
