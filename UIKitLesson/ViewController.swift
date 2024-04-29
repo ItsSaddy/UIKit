@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     //MARK: - @IBOutlets
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var textViewButtonConstraint: NSLayoutConstraint!
     
@@ -53,7 +54,7 @@ extension ViewController: UITextViewDelegate {
         guard
             let userInfo = notification.userInfo as? [String: Any],
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            else { return }
+        else { return }
         
         if notification.name == UIResponder.keyboardWillHideNotification {
             textView.contentInset = UIEdgeInsets.zero
@@ -82,17 +83,41 @@ extension ViewController {
 //MARK: Setup Views
 private extension ViewController {
     func setupViews() {
+        //textView
         textView.delegate = self
-        
-        textView.font =  UIFont(name: "AppleSDGothicNeo-Regular", size: 17)
+        textView.isHidden = true
+        textView.alpha = 0
+        textView.font = .systemFont(ofSize: 17, weight: .regular)
         textView.layer.cornerRadius = 10
         
+        //stepper
         stepper.value = 17
         stepper.minimumValue = 10
         stepper.maximumValue = 25
         
+        //activityIndicator
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+        
+        //Observing keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(updateTextView(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateTextView(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        UIView.animate(withDuration: 0, delay: 5, animations: { [weak self] in
+            guard let self = self else { return }
+            
+            textView.alpha = 1
+        }) { [weak self] (finished) in
+            guard let self = self else { return }
+            
+            activityIndicator.stopAnimating()
+            textView.isHidden = false
+            view.isUserInteractionEnabled = true
+            
+        }
     }
+    
 }
+

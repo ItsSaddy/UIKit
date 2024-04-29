@@ -41,11 +41,20 @@
                                     </stepper>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="U4T-ON-2VA">
+                                <rect key="frame" x="176.66666666666666" y="311.66666666666669" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="HZc-hA-XyQ"/>
+                                    <constraint firstAttribute="width" constant="40" id="dWc-Tm-hUC"/>
+                                </constraints>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="U4T-ON-2VA" firstAttribute="centerY" secondItem="zfb-x2-V1L" secondAttribute="centerY" id="DCl-2B-YIv"/>
                             <constraint firstItem="zfb-x2-V1L" firstAttribute="top" secondItem="TYz-0p-fwW" secondAttribute="bottom" constant="10" id="Dch-Xi-yK8"/>
+                            <constraint firstItem="U4T-ON-2VA" firstAttribute="centerX" secondItem="zfb-x2-V1L" secondAttribute="centerX" id="Pvu-1w-Tpj"/>
                             <constraint firstItem="zfb-x2-V1L" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="Rct-F0-S1V"/>
                             <constraint firstItem="TYz-0p-fwW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="ScJ-bQ-80J"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TYz-0p-fwW" secondAttribute="trailing" constant="16" id="TZ8-NF-A8o"/>
@@ -56,6 +65,7 @@
                     </view>
                     <size key="freeformSize" width="393" height="800"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="U4T-ON-2VA" id="3ba-2f-6bO"/>
                         <outlet property="countLabel" destination="UC7-PE-NR5" id="bFI-MC-Rbu"/>
                         <outlet property="stepper" destination="MmA-bT-z6l" id="hJi-28-HWn"/>
                         <outlet property="textView" destination="zfb-x2-V1L" id="2c7-pQ-RKK"/>
